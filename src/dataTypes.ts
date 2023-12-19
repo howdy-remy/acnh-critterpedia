@@ -1,18 +1,22 @@
-export interface Fish {
+export interface CritterInterface {
   url: string;
   name: string;
   number: number;
   image_url: string;
   render_url: string;
-  location: string;
-  shadow_size: string;
+  location?: string;
+  shadow_size?: string;
+  shadow_movement?: string;
   rarity: string;
   total_catch: number;
   sell_nook: number;
-  sell_cj: number;
+  sell_cj?: number;
+  sell_flick?: number;
   tank_width: number;
   tank_length: number;
   catchphrases: string[];
+  north: HemisphereDataT;
+  south: HemisphereDataT;
 }
 
 export type HemisphereDataT = {

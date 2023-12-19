@@ -1,14 +1,21 @@
-import { Fish } from "../../dataTypes";
+import { CritterInterface } from "../../dataTypes";
 import { CritterWrapper, Flag, Icon } from "./Critter.styled";
 
 type CritterProps = {
-  critter: Fish;
+  critter: CritterInterface;
 };
 export const Critter = ({ critter }: CritterProps) => {
   return (
     <CritterWrapper>
-      <Flag $isDonated={false}>
-        <path d="M0 0L34.1745 0C36.0784 0 36.9054 2.40878 35.403 3.57824L26.9734 10.1397C25.9618 10.927 25.9417 12.4494 26.9322 13.2632L35.685 20.4547C37.1357 21.6466 36.2929 24 34.4153 24H0L0 0Z" />
+      <Flag
+        $isDonated={false}
+        width="37"
+        height="24"
+        viewBox="0 0 37 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0L21.9523 0C23.8562 0 24.6832 2.40878 23.1807 3.57824L19.3345 6.57208C18.3229 7.35947 18.3028 8.88185 19.2933 9.69563L23.4628 13.1214C24.9134 14.3133 24.0706 16.6667 22.1931 16.6667H0L0 0Z" />
       </Flag>
       <Icon src={critter.image_url} />
     </CritterWrapper>

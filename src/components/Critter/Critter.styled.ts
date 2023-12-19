@@ -7,24 +7,18 @@ export const CritterWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
 
   border: 1px solid black;
 `;
 
 export const Icon = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
 `;
 
-export const Flag = styled.svg.attrs<{ $isDonated?: boolean }>({
-  width: "37",
-  height: "24",
-  viewBox: "0 0 37 24",
-  fill: "none",
-  xmlns: "http://www.w3.org/2000/svg",
-})`
+export const Flag = styled.svg<{ $isDonated?: boolean }>`
   position: absolute;
   left: 0;
   top: 8px;
