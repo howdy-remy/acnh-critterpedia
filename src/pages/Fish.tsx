@@ -1,16 +1,14 @@
-import { useContext } from "react";
-import { Critters } from "../App.styled";
-import { Critter } from "../components/Critter/Critter";
-import { CritterContext } from "../context/CritterContext";
+import { useCritterContext } from "../context/CritterContext";
+import { CrittersWrapper, Critter } from "../components/Critter";
 
 export const Fish = () => {
-  const { fish } = useContext(CritterContext);
+  const { fish } = useCritterContext();
 
   return (
-    <Critters>
+    <CrittersWrapper>
       {fish?.map((fish) => (
         <Critter critter={fish} key={fish.number} />
       ))}
-    </Critters>
+    </CrittersWrapper>
   );
 };

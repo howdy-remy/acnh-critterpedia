@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
-import { AppContainer } from "./App.styled";
+import { AppWrapper, ContentWrapper } from "./App.styled";
 import { NavBar } from "./components/Nav/Nav";
 
 export const Layout = () => (
-  <AppContainer>
+  <AppWrapper>
     <NavBar />
-    <Outlet />
-  </AppContainer>
+    <ContentWrapper>
+      <Outlet />
+    </ContentWrapper>
+  </AppWrapper>
 );

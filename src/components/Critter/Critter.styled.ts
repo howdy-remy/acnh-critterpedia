@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const CrittersWrapper = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(5, 100px);
+
+  border: 1px solid black;
+  height: 500px;
+  width: max-content;
+`;
+
 export const CritterWrapper = styled.div`
   position: relative;
 

@@ -1,20 +1,12 @@
 import styled from "styled-components";
 
-export const AppContainer = styled.div`
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  grid-template-areas: "nav body";
-  grid-gap: 40px;
-  min-height: 100vh;
+export const AppWrapper = styled.div`
+  position: relative;
+  min-height: calc(100vh - 128px);
+  padding-top: 64px;
 `;
 
-export const Critters = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(5, 100px);
-
-  border: 1px solid black;
-  height: 500px;
+export const ContentWrapper = styled.div`
   width: 80vw;
-  overflow-x: auto;
+  margin: 40px 64px;
 `;

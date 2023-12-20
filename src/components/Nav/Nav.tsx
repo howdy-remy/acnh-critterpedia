@@ -5,5 +5,6 @@ export const NavBar = () => (
   <Navigation>
     <Link to="/">fish</Link>
     <Link to="/bugs">bugs</Link>
+    <Link to="/sea-creatures">seaCreatures</Link>
   </Navigation>
 );

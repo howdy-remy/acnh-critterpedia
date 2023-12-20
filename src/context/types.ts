@@ -38,6 +38,7 @@ export type HemisphereDataT = {
   months: string;
   months_array: number[];
 };
+
 export type AvailabilityArrayT = {
   months: string;
   time: string;

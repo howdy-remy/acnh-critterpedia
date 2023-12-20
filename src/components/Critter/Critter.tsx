@@ -1,9 +1,10 @@
-import { CritterInterface } from "../../dataTypes";
+import { CritterInterface } from "../../context/types";
 import { CritterWrapper, Flag, Icon } from "./Critter.styled";
 
 type CritterProps = {
   critter: CritterInterface;
 };
+
 export const Critter = ({ critter }: CritterProps) => {
   return (
     <CritterWrapper>

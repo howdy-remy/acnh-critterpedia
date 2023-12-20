@@ -1,13 +1,14 @@
-import "./App.css";
-import { ThemeProvider } from "styled-components";
-import { AppContainer } from "./App.styled";
-import theme from "./theme";
-import { Navigation } from "./components/Nav/Nav.styled";
-import { Fish } from "./pages/Fish";
-import { CritterContextProvider } from "./context/CritterContext";
+// utils
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Bugs } from "./pages/Bugs";
+import { ThemeProvider } from "styled-components";
+import { CritterContextProvider } from "./context/CritterContext";
+// general
 import { Layout } from "./Layout";
+import theme from "./theme";
+// pages
+import { Fish } from "./pages/Fish";
+import { Bugs } from "./pages/Bugs";
+import { SeaCreatures } from "./pages/SeaCreatures";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,10 @@ function App() {
         {
           path: "/bugs",
           element: <Bugs />,
+        },
+        {
+          path: "/sea-creatures",
+          element: <SeaCreatures />,
         },
       ],
     },

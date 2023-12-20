@@ -1,52 +1,68 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
-import { CritterInterface } from "../dataTypes";
-import { useFetchNookipedia } from "../hooks/useFetchNookipedia";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { CritterInterface as CritterI } from "./types";
 
-export const CritterContext = createContext<{
-  fish?: CritterInterface[];
-  bugs?: CritterInterface[];
-}>({});
+// create context --------------------------------------------------------------
+type CritterContextType = {
+  fish?: CritterI[];
+  bugs?: CritterI[];
+  sea?: CritterI[];
+};
+export const CritterContext = createContext<CritterContextType | undefined>(
+  undefined
+);
 
+// context provider ------------------------------------------------------------
 export const CritterContextProvider = ({
   children,
 }: {
   children: ReactNode;
 }) => {
-  // fish ----------------------------------------------------------------------
-  const fetchFish = useFetchNookipedia("fish");
-  const [fish, setFish] = useState<CritterInterface[]>([]);
+  const [state, setState] = useState<CritterContextType>({});
+  const resources = ["fish", "bugs", "sea"];
+
+  const fetchResource = async (url: string) => {
+    const response = await fetch(`https://api.nookipedia.com/nh/${url}`, {
+      headers: {
+        "X-API-KEY": "dfda704b-5968-409b-9221-cc75c7e784f5",
+        "Accept-Version": "1.6.0",
+      },
+    });
+    return await response.json();
+  };
 
   useEffect(() => {
-    const getFish = async () => {
-      const data = await fetchFish();
-      setFish(
-        data.sort(
-          (a: CritterInterface, b: CritterInterface) => a.number - b.number
-        )
-      );
-    };
-    getFish();
-  }, []);
+    const getResources = async () => {
+      resources.map(async (resource) => {
+        if (!!state[resource as keyof CritterContextType]) return;
 
-  // bugs ----------------------------------------------------------------------
-  const fetchBugs = useFetchNookipedia("bugs");
-  const [bugs, setBugs] = useState<CritterInterface[]>([]);
-
-  useEffect(() => {
-    const getBugs = async () => {
-      const data = await fetchBugs();
-      setBugs(
-        data.sort(
-          (a: CritterInterface, b: CritterInterface) => a.number - b.number
-        )
-      );
+        const data: CritterI[] = await fetchResource(resource);
+        setState((state) => ({
+          ...state,
+          [resource]: data.sort((a, b) => a.number - b.number),
+        }));
+      });
     };
-    getBugs();
+    getResources();
   }, []);
 
   return (
-    <CritterContext.Provider value={{ fish, bugs }}>
-      {children}
-    </CritterContext.Provider>
+    <CritterContext.Provider value={state}>{children}</CritterContext.Provider>
   );
+};
+
+// use context hook ------------------------------------------------------------
+export const useCritterContext = () => {
+  const context = useContext(CritterContext);
+  if (context === undefined) {
+    throw new Error(
+      "useCritterContext must be used within a CritterContextProvider"
+    );
+  }
+  return context;
 };
