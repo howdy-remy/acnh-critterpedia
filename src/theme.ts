@@ -1,7 +1,8 @@
 export default {
   colors: {
-    goldenrod: "#EDB82B",
+    goldenrod: "#FBCC63",
     mauve: "#D15E5E",
     kiwi: "#CBBF09",
+    tan: "#EFE4B6",
   },
 };
