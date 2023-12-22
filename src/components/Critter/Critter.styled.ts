@@ -17,15 +17,26 @@ export const CritterWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
+  box-sizing: border-box;
   width: 100px;
   height: 100px;
-
   border: 1px solid black;
+
+  transition: background-color filter 0.25s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    & > img {
+      filter: grayscale(0%);
+    }
+  }
 `;
 
 export const Icon = styled.img`
   width: 64px;
   height: 64px;
+  filter: grayscale(100%);
 `;
 
 export const Flag = styled.svg<{ $isDonated?: boolean }>`

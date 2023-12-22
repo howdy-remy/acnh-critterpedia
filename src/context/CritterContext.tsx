@@ -1,5 +1,7 @@
 import {
+  Dispatch,
   ReactNode,
+  SetStateAction,
   createContext,
   useContext,
   useEffect,
@@ -8,11 +10,17 @@ import {
 import { CritterInterface as CritterI } from "./types";
 
 // create context --------------------------------------------------------------
-type CritterContextType = {
+type CrittersType = {
   fish?: CritterI[];
   bugs?: CritterI[];
   sea?: CritterI[];
 };
+
+type CritterContextType = CrittersType & {
+  selectedCritter: CritterI | null;
+  setSelectedCritter: Dispatch<SetStateAction<CritterI | null>>;
+};
+
 export const CritterContext = createContext<CritterContextType | undefined>(
   undefined
 );
@@ -23,7 +31,10 @@ export const CritterContextProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [state, setState] = useState<CritterContextType>({});
+  const [selectedCritter, setSelectedCritter] = useState<CritterI | null>(null);
+  const [state, setState] = useState<CrittersType>({});
+
+  // get resources
   const resources = ["fish", "bugs", "sea"];
 
   const fetchResource = async (url: string) => {
@@ -39,7 +50,7 @@ export const CritterContextProvider = ({
   useEffect(() => {
     const getResources = async () => {
       resources.map(async (resource) => {
-        if (!!state[resource as keyof CritterContextType]) return;
+        if (!!state[resource as keyof CrittersType]) return;
 
         const data: CritterI[] = await fetchResource(resource);
         setState((state) => ({
@@ -52,7 +63,11 @@ export const CritterContextProvider = ({
   }, []);
 
   return (
-    <CritterContext.Provider value={state}>{children}</CritterContext.Provider>
+    <CritterContext.Provider
+      value={{ ...state, selectedCritter, setSelectedCritter }}
+    >
+      {children}
+    </CritterContext.Provider>
   );
 };
 

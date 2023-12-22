@@ -24,7 +24,7 @@ export const Links = styled.div`
   justify-content: end;
 `;
 
-export const LinkButton = styled.div<{ isSelected?: boolean }>`
+export const LinkButton = styled.div`
   position: relative;
   top: 32px;
 
@@ -36,9 +36,11 @@ export const LinkButton = styled.div<{ isSelected?: boolean }>`
   width: 64px;
   border-radius: 50%;
 
-  background-color: ${({ theme, isSelected }) =>
-    isSelected ? theme.colors.goldenrod : theme.colors.tan};
+  background-color: ${({ theme }) => theme.colors.tan};
 
+  .active > & {
+    background-color: ${({ theme }) => theme.colors.goldenrod};
+  }
   transition: background-color 0.25s ease;
   &:hover {
     background-color: white;
