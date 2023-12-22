@@ -1,52 +1,60 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-export const Navigation = styled.nav`
-  position: fixed;
+export const NavigationWrapper = styled.div`
+  position: sticky;
   top: 0;
-  left: 0;
   z-index: 100;
 
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+`;
+
+export const Navigation = styled.nav`
   display: grid;
   align-items: center;
   justify-content: space-between;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr max-content;
+  gap: 24px;
 
-  width: calc(100vw - 128px);
+  width: 80vw;
+  max-width: 1060px;
   height: 64px;
   padding: 0 64px;
-  background-color: #4c3c33;
+  background-color: #000000;
+`;
+
+export const PageTitle = styled.h1`
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 18px;
+  font-style: italic;
+  color: #ffffff;
+  margin: 0;
 `;
 
 export const Links = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
   justify-content: end;
+  gap: 16px;
 `;
 
-export const LinkButton = styled.div`
-  position: relative;
-  top: 32px;
+export const StyledNavLink = styled(NavLink)`
+  margin: 0;
+  color: #ffffff;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
 
-  height: 64px;
-  width: 64px;
-  border-radius: 50%;
-
-  background-color: ${({ theme }) => theme.colors.tan};
-
-  .active > & {
-    background-color: ${({ theme }) => theme.colors.goldenrod};
+  &.active {
+    text-decoration: underline;
   }
-  transition: background-color 0.25s ease;
-  &:hover {
-    background-color: white;
-  }
-  & > img {
-    height: 48px;
-    width: 48px;
+  &:hover:not(.active) {
+    font-style: italic;
+    text-transform: lowercase;
   }
 `;
