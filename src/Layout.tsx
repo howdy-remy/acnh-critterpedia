@@ -11,7 +11,7 @@ export const Layout = () => {
       <NavBar />
       <ContentWrapper>
         <Outlet />
-        {/* {selectedCritter && <Sidebar />} */}
+        {selectedCritter && <Sidebar />}
       </ContentWrapper>
     </AppWrapper>
   );

@@ -10,7 +10,7 @@ export const AppWrapper = styled.div`
 
 export const ContentWrapper = styled.div`
   width: 80vw;
-  margin: 40px 64px;
+  margin: 40px 0;
 `;
 
 export const Subtitle = styled.h1`

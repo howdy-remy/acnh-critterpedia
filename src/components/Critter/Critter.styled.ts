@@ -1,13 +1,22 @@
 import styled from "styled-components";
 
+export const CrittersOuterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+`;
+
 export const CrittersWrapper = styled.div`
   display: grid;
+  justify-content: start;
   grid-auto-flow: column;
   grid-template-rows: repeat(5, 100px);
 
   border: 1px solid black;
   height: 500px;
   width: max-content;
+  max-width: 1060px;
+  overflow-x: auto;
 `;
 
 export const CritterWrapper = styled.div`
@@ -44,8 +53,8 @@ export const Flag = styled.svg<{ $isDonated?: boolean }>`
   left: 0;
   top: 8px;
 
-  & > path {
+  /* & > path {
     fill: ${({ theme: { colors }, $isDonated }) =>
-      $isDonated ? colors.mauve : colors.goldenrod};
-  }
+    $isDonated ? colors.mauve : colors.goldenrod};
+  } */
 `;
