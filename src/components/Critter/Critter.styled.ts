@@ -45,7 +45,7 @@ export const CritterWrapper = styled.div`
 export const Icon = styled.img`
   width: 64px;
   height: 64px;
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
 `;
 
 export const Flag = styled.svg<{ $isDonated?: boolean }>`

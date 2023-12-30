@@ -56,7 +56,7 @@ export const Catchphrase = styled.p`
   text-align: center;
 `;
 
-// assets
+// elements
 export const Spacer = styled.div`
   height: 4px;
   width: 100%;
@@ -70,4 +70,22 @@ export const Image = styled.img`
   padding: 24px;
   border: 1px dotted black;
   object-fit: scale-down;
+`;
+
+export const CloseButton = styled.button`
+  all: unset;
+
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 18px;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `;

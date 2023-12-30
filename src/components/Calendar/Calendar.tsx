@@ -22,7 +22,9 @@ export const Calendar = ({ availableMonths }: CalendarProps) => {
   return (
     <CalendarGrid>
       {months.map((month, i) => (
-        <Month isActive={availableMonths.includes(i + 1)}>{month}</Month>
+        <Month $isActive={availableMonths.includes(i + 1)} key={month}>
+          {month}
+        </Month>
       ))}
     </CalendarGrid>
   );

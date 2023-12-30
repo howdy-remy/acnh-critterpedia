@@ -1,8 +1,9 @@
-import { ReactNode, RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useCritterContext } from "../../context/CritterContext";
 import {
   Bold,
   Catchphrase,
+  CloseButton,
   Description,
   ExhibitNumber,
   Image,
@@ -14,20 +15,19 @@ import { Calendar } from "../Calendar/Calendar";
 
 export const Sidebar = () => {
   const { selectedCritter, setSelectedCritter } = useCritterContext();
+  const ref = useRef<HTMLDivElement>(null);
 
-  const ref = useRef(null);
+  const handleClose = () => setSelectedCritter(null);
 
+  // click outside to close
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      // @ts-ignore
-      if (ref.current && !ref.current.contains(e.target)) {
-        setSelectedCritter(null);
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        handleClose();
       }
     }
-    // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref]);
@@ -73,6 +73,7 @@ export const Sidebar = () => {
       <Description>You can find them {availability.join(" and ")}.</Description>
       <Calendar availableMonths={months_array} />
       <Catchphrase>{catchphrases[0]}</Catchphrase>
+      <CloseButton onClick={handleClose}>close</CloseButton>
     </SidebarWrapper>
   );
 };
