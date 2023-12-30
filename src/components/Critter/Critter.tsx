@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CritterInterface } from "../../context/types";
 import { CritterWrapper, Flag, Icon } from "./Critter.styled";
 import { useCritterContext } from "../../context/CritterContext";
@@ -10,6 +10,14 @@ type CritterProps = {
 export const Critter = ({ critter }: CritterProps) => {
   const { setSelectedCritter } = useCritterContext();
   const [isDonated, setIsDonated] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const currentMonth = new Date().getMonth();
+    if (critter.north.months_array.includes(currentMonth + 1)) {
+      setIsActive(true);
+    }
+  }, []);
   return (
     <CritterWrapper onClick={() => setSelectedCritter(critter)}>
       {true && (
@@ -31,7 +39,7 @@ export const Critter = ({ critter }: CritterProps) => {
           /> */}
         </Flag>
       )}
-      <Icon src={critter.image_url} />
+      <Icon src={critter.image_url} $isActive={isActive} />
     </CritterWrapper>
   );
 };

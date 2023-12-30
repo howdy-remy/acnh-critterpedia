@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const CrittersOuterWrapper = styled.div`
   display: flex;
@@ -36,16 +36,26 @@ export const CritterWrapper = styled.div`
   &:hover {
     cursor: pointer;
     background-color: white;
-    & > img {
-      filter: grayscale(0%);
-    }
   }
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.img<{ $isActive?: boolean }>`
   width: 64px;
   height: 64px;
-  /* filter: grayscale(100%); */
+
+  transition: opacity 0.25s ease, filter 0.25s ease;
+
+  ${CritterWrapper}:hover > & {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  ${({ $isActive }) =>
+    !$isActive &&
+    css`
+      filter: grayscale(100%);
+      opacity: 0.2;
+    `};
 `;
 
 export const Flag = styled.svg<{ $isDonated?: boolean }>`
